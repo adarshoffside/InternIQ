@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile — InternIQ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="profile.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="profile-page">
+<header class="profile-nav">
+    <a href="index.html" class="brand"><span class="brand-mark">IQ</span><span>Intern<span>IQ</span></span></a>
+    <a href="index.html" class="back-link">← BACK TO INTERVIEW INTELLIGENCE</a>
+</header>
+
+<main class="profile-shell">
+    <section class="profile-hero">
+        <div><span class="section-label">CANDIDATE WORKSPACE</span><h1>Your InternIQ profile.</h1><p>Keep your interview identity, skills and preparation progress in one private workspace.</p></div>
+        <button id="logoutBtn">LOG OUT</button>
+    </section>
+
+    <div id="profileLoading" class="profile-notice">LOADING YOUR PROFILE...</div>
+    <div id="signedOut" class="profile-notice" hidden>You must sign in on the homepage to view this profile. <a href="index.html">GO TO SIGN IN →</a></div>
+
+    <section id="profileWorkspace" hidden>
+        <article class="portfolio-card">
+            <div class="portfolio-cover"><span>INTERNIQ / CANDIDATE</span></div>
+            <div class="portfolio-header">
+                <img id="pageAvatar" alt="Profile picture">
+                <div><span>PERSONAL PORTFOLIO</span><h2 id="pageName">User</h2><p id="pageEmail"></p></div>
+                <button id="editToggle">EDIT PROFILE</button>
+            </div>
+            <div class="portfolio-grid">
+                <div><span>CURRENT ROLE</span><strong id="pageRole">Not added yet</strong></div>
+                <div><span>COLLEGE / COMPANY</span><strong id="pageCollege">Not added yet</strong></div>
+                <div><span>SKILLS</span><strong id="pageSkills">Not added yet</strong></div>
+            </div>
+            <div class="portfolio-about"><span>ABOUT ME</span><p id="pageBio">Add a short introduction about yourself.</p></div>
+        </article>
+
+        <article class="profile-progress">
+            <div class="profile-card-title"><span class="section-label">PREPARATION TRACKING</span><strong id="pageTotal">0 SAVED</strong></div>
+            <div class="profile-progress-grid">
+                <div><span>PREPARED QUESTIONS</span><strong id="pagePrepared">0</strong></div>
+                <div><span>PRACTICED ANSWERS</span><strong id="pagePracticed">0</strong></div>
+                <div><span>COMPANIES RESEARCHED</span><strong id="pageCompanies">0</strong></div>
+            </div>
+            <div class="recent-preparation" id="recentPreparation"><p>No preparation saved yet.</p></div>
+        </article>
+
+        <article class="profile-editor-page" id="profileEditor" hidden>
+            <div class="profile-card-title"><span class="section-label">EDIT PORTFOLIO</span><button id="cancelEdit">CLOSE</button></div>
+            <form id="pageProfileForm">
+                <label>FULL NAME</label><input id="pageEditName" required>
+                <label>CURRENT ROLE</label><input id="pageEditRole" placeholder="Software Engineering Student">
+                <label>COLLEGE / COMPANY</label><input id="pageEditCollege" placeholder="Your college or company">
+                <label>SKILLS</label><input id="pageEditSkills" placeholder="JavaScript, Python, UI/UX">
+                <label>ABOUT YOU</label><textarea id="pageEditBio" placeholder="Tell recruiters about your goals and experience"></textarea>
+                <p id="pageProfileMessage"></p>
+                <button type="submit">SAVE PROFILE →</button>
+            </form>
+        </article>
+    </section>
+</main>
+<script src="profile.js"></script>
+</body>
+</html>

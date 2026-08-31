@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>InternIQ &mdash; Interview Intelligence</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="cursor-glow"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<header class="navbar">
+
+<a href="#" class="brand">
+<span class="brand-mark">IQ</span>
+<span>Intern<span>IQ</span></span>
+</a>
+
+<nav>
+<a href="#workspace">WORKSPACE</a>
+<a href="#insights">INSIGHTS</a>
+<a href="#questions">QUESTIONS</a>
+<a href="#roadmap">ROADMAP</a>
+</nav>
+<div class="account-area">
+    <button class="user-greeting" id="userGreeting" hidden>
+        <img id="userAvatar" alt="User profile">
+        <span><small>WELCOME BACK</small><strong id="userHello">Hi, User</strong></span>
+        <b>&#9662;</b>
+    </button>
+    <div class="user-menu" id="userMenu" hidden>
+        <div class="user-menu-head">
+            <img id="menuAvatar" alt="User profile">
+            <div><strong id="menuName">User</strong><span id="menuEmail">user@email.com</span></div>
+        </div>
+        <button id="viewProfileBtn">VIEW PROFILE</button>
+        <button id="editProfileBtn">EDIT PROFILE</button>
+        <button id="menuLogoutBtn" class="logout-option">LOG OUT</button>
+    </div>
+    <button class="auth-button" id="authButton">SIGN IN</button>
+</div>
+<div class="status" id="systemStatus">
+<span></span>
+<b id="systemStatusText">CHECKING AI</b>
+</div>
+<div class="auth-modal" id="authModal">
+    <div class="auth-overlay" id="authOverlay"></div>
+
+    <div class="auth-box">
+        <button class="auth-close" id="authClose">&times;</button>
+
+        <span class="section-label">INTERNIQ ACCOUNT</span>
+
+        <h2 id="authTitle">Welcome back.</h2>
+
+        <p id="authSubtitle">
+            Sign in to continue your interview preparation.
+        </p>
+<button class="google-auth" id="googleAuth">
+    CONTINUE WITH GOOGLE
+</button>
+
+<div class="auth-divider">
+    <span>OR CONTINUE WITH EMAIL</span>
+</div>
+        <form id="authForm">
+            <div id="nameField" hidden>
+                <label>NAME</label>
+                <input id="authName" type="text" placeholder="Your name">
+            </div>
+
+            <label>EMAIL</label>
+            <input id="authEmail" type="email" placeholder="you@example.com" required>
+
+            <label>PASSWORD</label>
+            <input id="authPassword" type="password" placeholder="Minimum 6 characters" minlength="6" required>
+
+            <p id="authMessage"></p>
+
+            <button type="submit" class="auth-submit" id="authSubmit">
+                SIGN IN &rarr;
+            </button>
+        </form>
+
+        <button class="auth-switch" id="authSwitch">
+            New to InternIQ? Create an account
+        </button>
+    </div>
+</div>
+</header>
+
+
+<main>
+
+<section class="user-profile" id="userProfile" hidden>
+    <div class="profile-cover"><span>INTERNIQ CANDIDATE PROFILE</span></div>
+    <div class="profile-content">
+        <img id="profileAvatar" alt="Profile picture">
+        <div class="profile-identity">
+            <span>PERSONAL WORKSPACE</span>
+            <h2 id="profileName">Hi, User</h2>
+            <p id="profileEmail">user@email.com</p>
+        </div>
+        <button id="profileEditBtn">EDIT PROFILE &rarr;</button>
+    </div>
+    <div class="profile-details">
+        <div><span>CURRENT ROLE</span><strong id="profileRole">Not added yet</strong></div>
+        <div><span>COLLEGE / COMPANY</span><strong id="profileCollege">Not added yet</strong></div>
+        <div><span>SKILLS</span><strong id="profileSkills">Not added yet</strong></div>
+    </div>
+    <div class="profile-bio"><span>ABOUT</span><p id="profileBio">Add a short introduction about yourself.</p></div>
+</section>
+<section class="progress-dashboard" id="progressDashboard" hidden>
+    <div class="progress-head">
+        <div><span class="section-label">PERSONAL PREPARATION TRACKER</span><h2>Your preparation progress.</h2></div>
+        <strong id="progressPercent">0%</strong>
+    </div>
+    <div class="progress-track"><i id="progressBar"></i></div>
+    <div class="progress-stats">
+        <div><span>PREPARED</span><strong id="preparedCount">0</strong></div>
+        <div><span>PRACTICED</span><strong id="practicedCount">0</strong></div>
+        <div><span>TOTAL SAVED</span><strong id="totalTracked">0</strong></div>
+    </div>
+    <p id="progressEmpty">Research a company and mark questions as prepared to begin tracking.</p>
+</section>
+<section class="hero">
+<div class="hero-visual" aria-hidden="true">
+
+    <div class="visual-grid"></div>
+
+    <div class="visual-orbit orbit-a"></div>
+    <div class="visual-orbit orbit-b"></div>
+    <div class="visual-orbit orbit-c"></div>
+
+    <div class="visual-core">
+        <span></span>
+    </div>
+
+    <div class="visual-node node-a"></div>
+    <div class="visual-node node-b"></div>
+    <div class="visual-node node-c"></div>
+    <div class="visual-node node-d"></div>
+    <div class="visual-node node-e"></div>
+
+    <div class="visual-line line-a"></div>
+    <div class="visual-line line-b"></div>
+    <div class="visual-line line-c"></div>
+
+    <div class="visual-pulse"></div>
+
+</div>
+
+
+<div class="hero-copy">
+
+<div class="eyebrow">
+INTERVIEW PREPARATION SYSTEM
+</div>
+
+<h1 class="main-title">
+    Know <span>what</span> they’ll ask.<br>
+    Know <span>why</span> they’ll ask.<br>
+    Know <span>how</span> to answer.
+</h1>
+<p>
+Turn any company name into a focused intelligence brief &mdash;
+live company context, culture signals, likely interview focus,
+preparation questions and the sources behind the research.
+</p>
+
+<div class="hero-meta">
+<span>01 &middot; ENTER COMPANY</span>
+<span>02 &middot; RESEARCH SOURCES</span>
+<span>03 &middot; PREPARE SMARTER</span>
+</div>
+
+</div>
+
+
+<div class="hero-panel">
+
+<div class="hero-panel-top">
+
+<span>LIVE COMPANY SCAN</span>
+
+<span class="scan-status">
+<i></i> READY
+</span>
+
+</div>
+
+
+<div class="radar">
+
+<div class="radar-ring ring-one"></div>
+
+<div class="radar-ring ring-two"></div>
+
+<div class="radar-ring ring-three"></div>
+
+<div class="radar-line"></div>
+
+<div class="radar-point point-one"></div>
+
+<div class="radar-point point-two"></div>
+
+<div class="radar-point point-three"></div>
+
+<div class="radar-center">
+IQ
+</div>
+
+</div>
+
+
+<div class="signal-list">
+
+<div>
+<span>TECHNICAL</span>
+<b>●</b>
+</div>
+
+<div>
+<span>BEHAVIORAL</span>
+<b>●</b>
+</div>
+
+<div>
+<span>PROBLEM SOLVING</span>
+<b>●</b>
+</div>
+
+</div>
+
+
+<div class="scan-footer">
+
+<span>ANALYSIS ENGINE</span>
+
+<strong>001</strong>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="workspace" id="workspace">
+    <div class="section-heading">
+        <div>
+            <div class="section-label">01 / COMPANY DISCOVERY</div>
+            <h2>Research your target company.</h2>
+        </div>
+        <div class="shortcut">CTRL + SPACE &middot; FOCUS</div>
+    </div>
+
+    <div class="company-search-layout">
+        <div class="company-card company-card--search">
+            <div class="company-copy">
+                <span class="section-label">LIVE COMPANY INTELLIGENCE</span>
+                <h3>Which company are you preparing for?</h3>
+                <p>Enter any organization. InternIQ will search the web, study reliable sources and build an interview-focused company brief.</p>
+            </div>
+
+            <div class="company-field">
+                <label for="companyName">COMPANY NAME</label>
+                <div class="company-input-wrap">
+                    <span>CO</span>
+                    <input id="companyName" type="text" maxlength="100" placeholder="Try Amazon, NVIDIA, Zoho or any startup" autocomplete="organization">
+                </div>
+                <div class="personalization-fields">
+                    <div>
+                        <label for="targetRole">TARGET ROLE</label>
+                        <input id="targetRole" type="text" maxlength="100" placeholder="Software Engineering Intern">
+                    </div>
+                    <div>
+                        <label for="experienceLevel">EXPERIENCE LEVEL</label>
+                        <select id="experienceLevel">
+                            <option value="student">Student / Fresher</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="experienced">Experienced</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="jd-field">
+                    <label for="jobDescription">JOB DESCRIPTION <span>OPTIONAL</span></label>
+                    <textarea id="jobDescription" maxlength="20000" placeholder="Paste the job description for deeper role-specific analysis..."></textarea>
+                    <small id="jdCount">0 / 20,000</small>
+                </div>
+                <div class="company-presets" aria-label="Company suggestions">
+                    <button type="button" data-company="Amazon">AMAZON</button>
+                    <button type="button" data-company="Google">GOOGLE</button>
+                    <button type="button" data-company="NVIDIA">NVIDIA</button>
+                    <button type="button" data-company="Microsoft">MICROSOFT</button>
+                    <button type="button" data-company="Zoho">ZOHO</button>
+                </div>
+                <button class="analyze-button" id="analyzeBtn">
+                    <span>BUILD COMPANY BRIEF</span><strong>&rarr;</strong>
+                </button>
+            </div>
+        </div>
+
+        <div class="research-preview">
+            <div class="research-live"><i></i><span>LIVE WEB RESEARCH</span></div>
+            <div class="preview-item"><b>01</b><span>Company and role research</span></div>
+            <div class="preview-item"><b>02</b><span>Experience-aware questions</span></div>
+            <div class="preview-item"><b>03</b><span>Why they ask and how to answer</span></div>
+            <div class="preview-item"><b>04</b><span>Adaptive AI mock interview</span></div>
+            <p>Results combine live search evidence with AI synthesis. Always verify critical details from linked sources.</p>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="dashboard" id="insights">
+
+<div class="dashboard-header">
+
+<div>
+
+<div class="section-label">
+03 / SUPPORTING COMPANY INTELLIGENCE
+</div>
+
+<h2 id="roleName">
+Waiting for company...
+</h2>
+
+<p id="roleType">
+Enter a company above to begin live research
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="company-detail-grid">
+    <article class="company-overview-card">
+        <span class="section-label">COMPANY OVERVIEW</span>
+        <p id="companyOverview">Research a company to see its business, products, culture and interview context.</p>
+    </article>
+    <article class="company-facts-card">
+        <div><span>INDUSTRY</span><strong id="companyIndustry">&mdash;</strong></div>
+        <div><span>HEADQUARTERS</span><strong id="companyHeadquarters">&mdash;</strong></div>
+        <div><span>FOUNDED</span><strong id="companyFounded">&mdash;</strong></div>
+        <div><span>WEBSITE</span><a id="companyWebsite" href="#" target="_blank" rel="noopener">&mdash;</a></div>
+    </article>
+</div>
+
+
+
+<article class="job-analysis-card" id="jobAnalysisCard" hidden>
+    <div class="card-heading"><span class="section-label">JOB DESCRIPTION ANALYSIS</span><span>AI EXTRACTED</span></div>
+    <div class="job-analysis-content">
+        <div><label>DETECTED ROLE</label><strong id="detectedRole">&mdash;</strong></div>
+        <div><label>ROLE SUMMARY</label><p id="jobSummary">&mdash;</p></div>
+    </div>
+    <div class="job-requirements" id="jobRequirements"></div>
+</article>
+
+
+<div class="insight-grid">
+
+<div class="skills-card">
+
+<div class="card-heading">
+
+<span class="section-label">
+INTERVIEW FOCUS
+</span>
+
+<span>
+LIVE
+</span>
+
+</div>
+
+<h3>
+The capabilities most likely to shape interviews here.
+</h3>
+
+<div class="skills" id="detectedSkills">
+
+<span>
+Waiting for research
+</span>
+
+</div>
+
+</div>
+
+
+<div class="lens-card">
+
+<div class="section-label">
+RECRUITER LENS
+</div>
+
+<h3 id="recruiterLens">
+What is this company likely to evaluate?
+</h3>
+
+<p>
+Live sources and company context are synthesized into a practical preparation lens.
+</p>
+
+<div class="lens-arrow">
+&nearr;
+</div>
+
+</div>
+
+<div class="company-research-grid">
+    <article class="hiring-card">
+        <div class="card-heading"><span class="section-label">LIKELY HIRING FLOW</span><span>GENERAL</span></div>
+        <ol id="hiringProcess"><li>Waiting for company research</li></ol>
+    </article>
+    <article class="sources-card">
+        <div class="card-heading"><span class="section-label">RESEARCH SOURCES</span><span>LIVE WEB</span></div>
+        <div id="companySources"><p>Source links will appear after research.</p></div>
+    </article>
+    <article class="mock-card">
+        <div class="card-heading"><span class="section-label">AI MOCK INTERVIEW</span><span>COACH MODE</span></div>
+        <h3>Practice one question at a time.</h3>
+        <p>Write your answer and receive instant AI feedback on its strengths, gaps and structure.</p>
+        <button id="startMockBtn" disabled>START MOCK INTERVIEW &rarr;</button>
+    </article>
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="questions-section" id="questions">
+
+<div class="section-heading">
+
+<div>
+
+<div class="section-label">
+02 / AI INTERVIEW INTELLIGENCE
+</div>
+
+<h2>
+Know what they may ask, why they ask it, and how to answer.
+</h2>
+
+</div>
+
+
+<div class="tabs">
+
+<button class="tab active" data-filter="all">
+ALL
+</button>
+
+<button class="tab" data-filter="technical">
+TECHNICAL
+</button>
+
+<button class="tab" data-filter="behavioral">
+BEHAVIORAL
+</button>
+
+<button class="tab" data-filter="situational">
+SITUATIONAL
+</button>
+
+<select class="difficulty-filter" id="difficultyFilter" aria-label="Filter question difficulty">
+    <option value="all">ALL DIFFICULTIES</option>
+    <option value="low">FOUNDATION</option>
+    <option value="mid">INTERMEDIATE</option>
+    <option value="high">ADVANCED</option>
+</select>
+
+</div>
+
+</div>
+
+
+<div class="question-list" id="questionList">
+
+<div class="empty-question">
+
+<span>
+WAITING FOR COMPANY
+</span>
+
+<h3>
+Your interview map is empty.
+</h3>
+
+<p>
+Enter a company above and build its intelligence brief.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="roadmap" id="roadmap">
+
+<div class="roadmap-intro">
+
+<div class="section-label">
+04 / PREPARATION
+</div>
+
+<h2>
+Don't just know the question.<br>
+Know your <em>answer.</em>
+</h2>
+
+<p>
+Strong candidates don't memorize hundreds of answers.
+They understand the signal behind the question and
+prepare evidence from their own experience.
+</p>
+
+</div>
+
+
+<div class="roadmap-list">
+
+<div class="roadmap-step">
+
+<strong>01</strong>
+
+<div>
+
+<span>
+TECHNICAL
+</span>
+
+<h3>
+Explain your fundamentals.
+</h3>
+
+<p>
+Be ready to explain concepts simply and connect them
+to projects you have actually built.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="roadmap-step">
+
+<strong>02</strong>
+
+<div>
+
+<span>
+PROJECTS
+</span>
+
+<h3>
+Prepare your evidence.
+</h3>
+
+<p>
+Choose two projects and know the problem, your role,
+technical decisions, challenges and results.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="roadmap-step">
+
+<strong>03</strong>
+
+<div>
+
+<span>
+BEHAVIORAL
+</span>
+
+<h3>
+Build your stories.
+</h3>
+
+<p>
+Prepare concise examples around teamwork, conflict,
+failure, ownership, learning and problem solving.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="roadmap-step">
+
+<strong>04</strong>
+
+<div>
+
+<span>
+FINAL CHECK
+</span>
+
+<h3>
+Practice out loud.
+</h3>
+
+<p>
+A technically correct answer means little if you cannot
+communicate it clearly under pressure.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="final-cta">
+
+<div class="section-label">
+INTERNIQ / READY
+</div>
+
+<h2>
+Walk into the interview with a plan, not a <em>guess.</em>
+</h2>
+
+<button onclick="document.getElementById('workspace').scrollIntoView({behavior:'smooth'})">
+RESEARCH ANOTHER COMPANY &rarr;
+</button>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<div>
+Intern<span>IQ</span>
+</div>
+
+<span>
+INTERVIEW INTELLIGENCE &middot; HACKATHON EDITION V3
+</span>
+
+<span>
+2026
+</span>
+
+</footer>
+
+<div class="mock-modal" id="mockModal" aria-hidden="true">
+    <div class="mock-overlay" id="mockOverlay"></div>
+    <div class="mock-dialog">
+        <button class="mock-close" id="mockClose">&times;</button>
+        <span class="section-label">AI MOCK INTERVIEW</span>
+        <small id="mockProgress">QUESTION 1</small>
+        <h2 id="mockQuestion">Your interview question will appear here.</h2>
+        <form id="mockForm">
+            <label for="mockAnswer">YOUR ANSWER</label>
+            <textarea id="mockAnswer" minlength="20" maxlength="4000" placeholder="Type the answer you would give in the interview..." required></textarea>
+            <p id="mockMessage"></p>
+            <button type="submit" id="analyzeAnswerBtn">ANALYZE MY ANSWER &rarr;</button>
+        </form>
+        <div class="mock-result" id="mockResult" hidden>
+            <div><label>WHAT WORKED</label><p id="mockStrengths"></p></div>
+            <div><label>WHAT TO IMPROVE</label><p id="mockImprovements"></p></div>
+            <div><label>STRONGER ANSWER PLAN</label><p id="mockBetterAnswer"></p></div>
+            <div class="adaptive-followup" id="adaptiveFollowup"><label>ADAPTIVE FOLLOW-UP</label><p id="mockFollowUp"></p></div>
+            <button id="nextMockBtn">NEXT QUESTION &rarr;</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="profile-modal" id="profileModal">
+    <div class="profile-overlay" id="profileOverlay"></div>
+    <div class="profile-editor">
+        <button class="profile-close" id="profileClose">&times;</button>
+        <span class="section-label">EDIT PROFILE</span>
+        <h2>Tell us about yourself.</h2>
+        <form id="profileForm">
+            <label>FULL NAME</label><input id="editName" type="text" required>
+            <label>CURRENT ROLE</label><input id="editRole" type="text" placeholder="BTech CSE Student">
+            <label>COLLEGE / COMPANY</label><input id="editCollege" type="text" placeholder="Your college or company">
+            <label>SKILLS</label><input id="editSkills" type="text" placeholder="Python, JavaScript, UI/UX">
+            <label>SHORT BIO</label><textarea id="editBio" maxlength="300" placeholder="Tell recruiters about yourself"></textarea>
+            <p id="profileMessage"></p>
+            <button type="submit">SAVE PROFILE &rarr;</button>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
