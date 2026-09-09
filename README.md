@@ -1,4 +1,4 @@
-# InternIQ Fixed Build
+# InternIQ 
 
 The frontend files in this package are the exact files supplied by you. Only the backend Gemini response pipeline and backend package list were repaired.
 
